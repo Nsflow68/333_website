@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block title %}Catálogo - 333 STORE{% endblock %}
+{% load static %}
+{% block content %}
+
+<style>
+  .catalog-wrapper {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .catalog-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: #222;
+  }
+
+  .catalog-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+
+  .product-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .product-info {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  .product-info h3 {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #222;
+  }
+
+  .product-info p {
+    font-weight: bold;
+    color: #0077cc;
+    margin-bottom: 0.8rem;
+  }
+
+  .product-info a.button {
+    display: inline-block;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 0.4rem;
+  }
+
+  .product-info a.button:hover {
+    background-color: #005fa3;
+  }
+</style>
+
+<div class="catalog-wrapper">
+  <h1 class="catalog-title">Catálogo de Productos</h1>
+  <section class="catalog-container">
+    {% for producto in productos %}
+      <div class="product-card">
+        {% if producto.imagen %}
+          <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+        {% else %}
+          <img src="/media/default.png" alt="Sin imagen">
+        {% endif %}
+
+        <div class="product-info">
+          <h3>{{ producto.nombre }}</h3>
+          <p>${{ producto.precio }}</p>
+
+          {% if user.is_authenticated %}
+            <a href="{% url 'agregar_al_carrito' producto.id %}" class="button">Añadir al carrito</a>
+          {% else %}
+            <a href="{% url 'login' %}?next={% url 'catalog' %}" class="button">Inicia sesión</a>
+          {% endif %}
+
+          <a href="{% url 'detalleprod' producto.id %}" class="button">Ver más</a>
+        </div>
+      </div>
+    {% empty %}
+      <p style="text-align: center;">No hay productos disponibles.</p>
+    {% endfor %}
+  </section>
+</div>
+
+{% endblock %}

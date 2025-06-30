@@ -1,0 +1,148 @@
+/* RESET GENERAL */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: white;
+    font-family: sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  
+  /* CONTENIDO PRINCIPAL */
+  .content {
+    position: relative;
+    min-height: calc(100vh - 200px);
+    padding: 60px 0;
+  }
+  
+  /* BLOQUES LATERALES */
+  .side-panels {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .side-panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 15vw;
+    background-color: white;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+  }
+  
+  .left-panel { left: 0; }
+  .right-panel { right: 0; }
+  
+  /* NAVBAR */
+  .navbar {
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .navbar-left a,
+  .navbar-right img {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+  }
+  
+  .navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .nav-logo {
+    height: 130px;
+    object-fit: contain;
+  }
+  
+  /* CARTAS VERDES */
+  .card-section {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px 15vw 40px;
+    box-sizing: border-box;
+  }
+  
+  .card-green {
+    width: 250px;
+    height: 250px;
+    background-color: limegreen;
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  }
+  
+  /* CARRUSEL */
+  .carrusel-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    padding: 0 15vw;
+    box-sizing: border-box;
+  }
+  
+  .carrusel-slider {
+    display: flex;
+    width: calc(300px * 6);
+    animation: deslizar 30s linear infinite;
+  }
+  
+  .carrusel-container:hover .carrusel-slider {
+    animation-play-state: paused;
+  }
+  
+  .carrusel-slider img {
+    width: 33.33vw;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  /* PROMO INFERIOR */
+  .promo-section-lower {
+    background-color: #000;
+    color: white;
+    padding: 60px 15vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .promo-section-lower h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .promo-section-lower p {
+    font-size: 16px;
+  }
+  
+  /* FOOTER */
+  footer {
+    background-color: #000;
+    color: white;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* ANIMACIONES */
+  @keyframes deslizar {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }

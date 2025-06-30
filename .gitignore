@@ -1,0 +1,20 @@
+# Entorno virtual
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Archivos base de datos
+db.sqlite3
+
+# Archivos temporales
+*.log
+*.swp
+.DS_Store
+
+# Config locales
+.vscode/
+.idea/
+
+# Variables de entorno
+.env

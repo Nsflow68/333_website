@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}333 STORE{% endblock %}</title>
+
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles2.css' %}">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <a href="{% url 'index' %}" class="nav-icon">
+        <img src="{% static 'img/nav/home.png' %}" 
+             data-hover="{% static 'img/nav/home_red.png' %}" 
+             alt="Home">
+      </a>
+      <a href="{% url 'catalog' %}" class="nav-icon">
+        <img src="{% static 'img/nav/stock.png' %}" 
+             data-hover="{% static 'img/nav/stock_red.png' %}" 
+             alt="Stock">
+      </a>
+    </div>
+
+    <!-- Imagen centrada -->
+    <div class="navbar-center">
+      <a href="{% url 'index' %}">
+        <img src="{% static 'img/logo.png' %}" alt="Logo 333" class="nav-logo">
+      </a>
+    </div>
+
+    <div class="navbar-right">
+      {% if user.is_authenticated %}
+        <span style="margin-right: 10px; color: white;">
+          Hola, {{ user.username }} 👋
+        </span>
+        <a href="{% url 'cart' %}" class="nav-link" title="Carrito">
+          <img src="{% static 'img/cart.png' %}" class="cart-icon" alt="Carrito">
+        </a>
+        <a href="{% url 'logout' %}" class="nav-link" title="Cerrar sesión">
+          <img src="{% static 'img/nav/logout.png' %}" 
+               data-hover="{% static 'img/nav/logout_red.png' %}" 
+               alt="Cerrar sesión">
+        </a>
+      {% else %}
+        <a href="{% url 'login' %}" class="nav-link" title="Iniciar sesión">
+          <img src="{% static 'img/nav/login.png' %}" 
+               data-hover="{% static 'img/nav/login_red.png' %}" 
+               alt="Iniciar sesión">
+        </a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <div class="content">
+    <div class="side-panels">
+      <div class="side-panel left-panel"></div>
+      <div class="side-panel right-panel"></div>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Contact us: 333@store.com | Instagram: 
+      <a href="https://www.instagram.com/threetimethree.cl" target="_blank" style="color: #ff4444;">
+        threetimethree.cl
+      </a>
+    </p>
+  </footer>
+
+  <!-- Hover image script -->
+  <script>
+    document.querySelectorAll('.nav-icon img, .nav-link img').forEach(img => {
+      const originalSrc = img.src;
+      const hoverSrc = img.getAttribute('data-hover');
+
+      if (hoverSrc) {
+        img.addEventListener('mouseover', () => {
+          img.src = hoverSrc;
+        });
+        img.addEventListener('mouseout', () => {
+          img.src = originalSrc;
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

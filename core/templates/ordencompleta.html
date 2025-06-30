@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  .order-confirmation {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
+    text-align: center;
+    background-color: #fa0303;
+    border-radius: 16px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  }
+
+  .order-confirmation h2 {
+    margin-bottom: 20px;
+    color: #000000;
+  }
+
+  .order-confirmation p, .order-confirmation li {
+    font-size: 16px;
+    margin: 8px 0;
+  }
+
+  .order-confirmation ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+  }
+
+  .order-confirmation .btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 20px;
+    background-color: #000000;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+
+  .order-confirmation .btn:hover {
+    background-color: #000000;
+  }
+</style>
+
+<section class="order-confirmation">
+  <h2>🎉 ¡Gracias por tu compra, {{ user.username }}!</h2>
+
+  <p><strong>Fecha:</strong> {{ recibo.fecha_emision|date:"d/m/Y H:i" }}</p>
+  <p><strong>Estado del pago:</strong> {{ recibo.estado|title }}</p>
+
+  <h3>Detalle de productos:</h3>
+  <ul>
+    {% for id, item in recibo.detalles.items %}
+      <li>
+        {{ item.nombre }} &mdash; Cantidad: {{ item.cantidad }} &mdash; Precio: ${{ item.precio }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+
+  <p><strong>Subtotal:</strong> ${{ subtotal }}</p>
+  <p><strong>IVA (19%):</strong> ${{ iva }}</p>
+  <p><strong>Total pagado:</strong> ${{ total_con_iva }}</p>
+
+  <a href="{% url 'ordencompleta' %}" class="btn">Volver al inicio</a>
+</section>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community - 333 STORE</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles-game.css' %}">
+  <style>
+    /* Sección de comunidad */
+    .community-section {
+      background-color: #111;
+      color: white;
+      padding: 50px;
+      text-align: center;
+    }
+
+    #instagram-feed {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+
+    #instagram-feed img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-left">
+      <a href="{% url 'index' %}" class="nav-link">home</a>
+      <a href="{% url 'catalog' %}" class="nav-link">stock</a>
+      <a href="{% url 'comunity' %}" class="nav-link">community</a>
+    </div>
+  
+    <!-- Imagen centrada -->
+    <div class="navbar-center">
+      <img src="{% static 'img/logo2.png' %}" alt="Logo 333" class="nav-logo">
+    </div>
+  
+    <div class="navbar-right">
+      <img src="{% static 'img/cart.png' %}" class="cart-icon" alt="Carrito">
+    </div>
+  </nav>
+
+  <!-- Community Section -->
+  <section class="community-section">
+    <h2>Únete a la Comunidad</h2>
+    <p>Descubre las mejores fotos y contenido en Instagram usando #333</p>
+    <div id="instagram-feed"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Contact us: 333@store.com | Instagram: 
+      <a href="https://www.instagram.com/threetimethree.cl" target="_blank" style="color: #ff4444;">threetimethree.cl</a>
+    </p>
+  </footer>
+
+  <!-- Instafeed.js Script -->
+  <script src="https://cdn.jsdelivr.net/npm/instafeed.js@2.0.0/instafeed.min.js"></script>
+  <script>
+    const feed = new Instafeed({
+      accessToken: 'TU_ACCESS_TOKEN',
+      limit: 6,
+      template: '<a href="{{link}}" target="_blank"><img src="{{image}}" alt="{{caption}}"/></a>',
+      get: 'hashtag',
+      hashtag: '333',
+    });
+    feed.run();
+  </script>
+
+</body>
+</html>

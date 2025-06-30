@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  /* ... tus estilos actuales sin cambios ... */
+</style>
+
+<section class="cart-container">
+  <h2>Tu Carrito</h2>
+
+  {% if carrito %}
+    {% for item in carrito.values %}
+      <div class="cart-item">
+        <img src="{{ item.imagen }}" alt="{{ item.nombre }}" />
+        <div class="cart-item-details">
+          <strong>{{ item.nombre }}</strong><br>
+          Precio unitario: ${{ item.precio }}<br>
+          Subtotal: ${{ item.subtotal }}<br>
+          <div class="quantity-controls">
+            <a href="{% url 'disminuir_cantidad' item.id %}" class="quantity-btn">−</a>
+            <span>{{ item.cantidad }}</span>
+            <a href="{% url 'aumentar_cantidad' item.id %}" class="quantity-btn">+</a>
+          </div>
+        </div>
+        <a href="{% url 'eliminar_del_carrito' item.id %}" class="btn-delete">Eliminar</a>
+      </div>
+    {% endfor %}
+
+    <div class="total">
+      Total: ${{ total }}
+    </div>
+
+    <a href="{% url 'vaciar_carrito' %}" class="btn-clear">Vaciar Carrito</a>
+
+    <!-- Pago seguro por método POST -->
+    <form method="post" action="{% url 'iniciar_pago_webpay' %}">
+      {% csrf_token %}
+      <button type="submit" class="checkout-btn">Proceder al pago</button>
+    </form>
+
+  {% else %}
+    <p style="text-align:center; color: #777;">Tu carrito está vacío.</p>
+  {% endif %}
+</section>
+
+<script>
+  // Confirmación antes de pagar
+  document.querySelector('.checkout-btn')?.addEventListener('click', function(e) {
+    if (!confirm("¿Deseas proceder al pago con Webpay?")) {
+      e.preventDefault();
+    }
+  });
+</script>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Página de Inicio - 333 STORE{% endblock %}
+
+{% block content %}
+  <!-- Cargar archivos estáticos correctamente -->
+  {% load static %}
+  <html lang="es">
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/styles-game.css' %}">
+  <link rel="stylesheet" href="{% static 'css/blocks.css' %}">
+
+  </head>
+
+  <!-- Contenido de la página de inicio -->
+  <section>
+    <!-- Canvas del juego -->
+    <canvas id="gameCanvas" width="100vw" height="400"></canvas>
+    <div id="gameOverScreen">
+      <h1>¡Game Over!</h1>
+      <p id="finalScore"></p>
+      <button onclick="restartGame()">Jugar de nuevo</button>
+    </div>
+    <button id="jumpBtn">Saltar</button>
+    <script src="{% static 'js/game.js' %}"></script>
+  </section>
+
+  <!-- Promo negro con imagen difuminada -->
+  <a href="game.html" style="text-decoration: none; color: inherit;">
+    <section class="promo-section">
+      <div class="promo-text">
+        <h2>OBTEN DESCUENTOS AL OBTENER PUNTOS EN SKATE MASTER</h2>
+        <p>Canjea tus puntos por increíbles recompensas y beneficios dentro de nuestra tienda en línea.</p>
+      </div>
+    </section>
+  </a>
+
+  <!-- Carrusel con logo superpuesto -->
+  <div class="logo-section">
+    <div class="carousel-background"></div>
+    <img src="{% static 'img/png.png' %}" class="logo-superpuesto" alt="Logo 333">
+  </div>
+
+  <div class="carrusel-container">
+    <div class="carrusel-slider">
+      <img src="{% static 'img/PR/1.jpeg' %}" alt="Imagen 1">
+      <img src="{% static 'img/PR/2.jpeg' %}" alt="Imagen 2">
+      <img src="{% static 'img/PR/3.jpeg' %}" alt="Imagen 3">
+      <img src="{% static 'img/PR/4.jpeg' %}" alt="Imagen 1 repetida">
+      <img src="{% static 'img/PR/5.jpeg' %}" alt="Imagen 2 repetida">
+      <img src="{% static 'img/PR/1.jpeg' %}" alt="Imagen 3 repetida">
+    </div>
+  </div>
+{% endblock %}

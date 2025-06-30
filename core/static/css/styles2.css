@@ -1,0 +1,453 @@
+/* RESET GENERAL */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: white;
+  font-family: sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* PROMO / PORTADA */
+.promo-section {
+  background-color: #000;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 50px 30px;
+  position: relative;
+}
+
+.promo-section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0,0,0,0));
+  background-image: url('static/img/skate_pro2.png');
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+  mask-image: linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 100%);
+}
+
+.promo-text {
+  margin-left: auto;
+  max-width: 400px;
+  z-index: 1;
+  position: relative;
+}
+
+.promo-text h2 {
+  margin-top: 0;
+}
+
+/* BLOQUES BLANCOS LATERALES */
+.side-banners {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 50px 0;
+  background-color: #111;
+  gap: 40px;
+}
+
+.side-banner {
+  width: 300px;
+  height: 300px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* CARRUSEL */
+.logo-section {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.carousel-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  animation: cambiarImagen 15s infinite;
+  z-index: 0;
+}
+
+.logo-superpuesto {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+}
+
+.carrusel-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  padding: 0 15vw; /* Respeta los bloques blancos laterales */
+  box-sizing: border-box;
+}
+
+.carrusel-slider {
+  display: flex;
+  width: calc(300px * 6);
+  animation: deslizar 30s linear infinite;
+}
+
+.carrusel-container:hover .carrusel-slider {
+  animation-play-state: paused;
+}
+
+.carrusel-slider img {
+  width: 33.33vw;
+  height: 300px;
+  object-fit: cover;
+}
+
+@keyframes deslizar {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+.navbar-left .nav-icon img {
+  padding: 0;
+  border: none;
+  background: none;
+  image-rendering: auto;  
+  height: 23px;
+  margin-right: 25px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 3px rgba(255, 0, 0, 0.4));
+}
+.nav-icon:focus {
+  outline: none;
+}
+
+
+
+.navbar-left .nav-icon img:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8));
+}
+
+
+.navbar-right img {
+  width: 24px;
+  height: 24px;
+}
+
+.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover {
+  color: #ff0000;
+}
+
+.nav-logo {
+  height: 130px;
+  object-fit: contain;
+}
+
+/* CARRITO */
+.cart-icon {
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+}
+
+.cart-icon:hover {
+  filter: none;
+}
+
+.cart-container {
+  background-color: #111;
+  padding: 30px;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.cart-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.total {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.checkout-btn {
+  background-color: #ff3333;
+  padding: 12px;
+  color: white;
+  border: none;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.checkout-btn:hover {
+  background-color: #cc0000;
+}
+
+/* FOOTER */
+footer {
+  background-color: #000;
+  color: white;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  min-height: calc(100vh - 200px); /* ajusta según altura nav + footer */
+  padding: 60px 0; /* para que el contenido no se superponga a los paneles */
+}
+
+.side-panels {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.side-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 15vw;
+  background-color: white;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.left-panel {
+  left: 0;
+  border-radius: 0;
+}
+
+.right-panel {
+  right: 0;
+  border-radius: 0;
+}
+.card-section {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 60px 15vw 40px; /* 15vw para respetar los bordes blancos */
+  box-sizing: border-box;
+}
+
+.card-green {
+  width: 250px;
+  height: 250px;
+  background-color: limegreen;
+  border: 2px solid white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.promo-section-lower {
+  background-color: #000;
+  color: white;
+  padding: 60px 15vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.promo-section-lower h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.promo-section-lower p {
+  font-size: 16px;
+}
+/*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa CATALOGO 333 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 columnas iguales */
+  gap: 30px;  /* espacio entre cartas */
+  padding: 40px 15vw;
+  box-sizing: border-box;
+  justify-items: center;
+}
+
+.product-card {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1 / 1;  /* cuadrado perfecto */
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+
+.product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover img {
+  opacity: 0.7;
+}
+
+.product-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  text-align: left;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-info {
+  transform: translateY(0);
+}
+
+.product-info h3, .product-info p {
+  margin: 5px 0;
+}
+
+.product-info button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ff3333;
+  color: white;
+  font-size: 24px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-info button:hover {
+  background-color: #cc0000;
+}
+
+.product-info button:focus {
+  outline: none;
+}
+
+
+/*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa REGISTRO 333 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+.register-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 80px;
+  min-height: 100vh;
+  background-color: #000;
+}
+
+.register-container {
+  background-color: #111;
+  padding: 40px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  color: white;
+}
+
+.register-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.register-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 4px;
+  background-color: #222;
+  color: white;
+}
+
+.register-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: red;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.register-container button:hover {
+  background-color: #cc0000;
+}
